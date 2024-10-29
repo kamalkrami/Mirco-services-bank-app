@@ -1,0 +1,23 @@
+# Static configuration of the gateway in the application.yml
+spring:
+  cloud:
+    gateway:
+        routes:
+          - id : 1
+            uri: http://localhost:8081/
+            predicates:
+              - Path=/customers/**
+          - id : 2
+            uri: http://localhost:8082/
+            predicates:
+              - Path=/accounts/**
+  application:
+    name: gateway-service
+server:
+  port: 8888
+
+# To Disable Eureka Client Registration (If Not Needed)
+#eureka:
+#  client:
+#    register-with-eureka: false
+#    fetch-registry: false
