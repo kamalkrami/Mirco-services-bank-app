@@ -5,6 +5,7 @@ import net.kamal.accountservice.client.CustomerRestClient;
 import net.kamal.accountservice.entities.BankAccount;
 import net.kamal.accountservice.model.Customer;
 import net.kamal.accountservice.repository.BankAccountRepository;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController @AllArgsConstructor
+@RefreshScope
 public class BankAccountRestController {
     private BankAccountRepository bankAccountRepository;
     private CustomerRestClient customerRestClinet;
