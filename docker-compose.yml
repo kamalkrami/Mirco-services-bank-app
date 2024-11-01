@@ -1,0 +1,26 @@
+services:
+  my-ebank-discovery-service:
+    build: ./discovery-service
+    container_name: my-ebank-discovery-service
+    ports:
+      - "8761:8761"
+    expose:
+      - "8761"
+    healthcheck:
+      test: ["CMD", "curl" ,"-f", "http://localhost:8761/actuator/health"]
+      interval: 10s
+      retries: 4
+  my-ebank-config-service:
+    build: ./config-service
+    container_name: my-ebank-config-service
+    ports:
+      - "9999:9999"
+    expose:
+      - "9999"
+    environment:
+      - DISCOVERY_SERVICE_URL=http://my-ebank-discovery-service:8761/eureka
+    depends_on:
+      my-ebank-discovery-service:
+        condition: service_healthy
+
+
