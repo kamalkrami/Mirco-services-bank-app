@@ -73,3 +73,11 @@ services:
     depends_on:
       my-ebank-config-service:
         condition: service_healthy
+
+  my-angular-front-end:
+    build: ./angular-front-end
+    container_name: my-angular-front-end
+    ports:
+      - "80:80"
+    expose:
+      - "80"
